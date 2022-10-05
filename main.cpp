@@ -1,4 +1,3 @@
-//// https://github.com/glfw/glfw/issues/2138
 #include <unistd.h>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -80,6 +79,7 @@ int main(int argc, char** argv) {
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
+  const GLuint program = loadShader(vertex_shader_text, fragment_shader_text);
   {
 	windows[0] = glfwCreateWindow(300, 300, "window1", NULL, NULL);
 	glfwSetCharCallback(windows[0], character_callback);
@@ -89,7 +89,6 @@ int main(int argc, char** argv) {
 	//glfwSwapInterval(1);
   }
 
-  const GLuint program = loadShader(vertex_shader_text, fragment_shader_text);
 
   GLuint vao[2];
   glGenVertexArrays(1, &vao[0]);
@@ -118,7 +117,7 @@ int main(int argc, char** argv) {
 	glfwSetCharCallback(windows[1], character_callback);
 	glfwMakeContextCurrent(windows[1]);
 
-	glfwSwapInterval(1);
+	//glfwSwapInterval(1);
 	{
 	  glUseProgram(program);
 	  glGenVertexArrays(1, &vao[1]);
