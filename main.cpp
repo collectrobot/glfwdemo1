@@ -79,14 +79,12 @@ int main(int argc, char** argv) {
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-  const GLuint program = loadShader(vertex_shader_text, fragment_shader_text);
   {
 	windows[0] = glfwCreateWindow(300, 300, "window1", NULL, NULL);
 	glfwSetCharCallback(windows[0], character_callback);
 	glfwMakeContextCurrent(windows[0]);
 	gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 
-	//glfwSwapInterval(1);
   }
 
 
@@ -96,6 +94,7 @@ int main(int argc, char** argv) {
   glGenBuffers(1, &vbo);
 
   const GLfloat vertices[] = {-1.0f, -1.0f, 0.0f, 1.0f, 1.0f, -1.0f};
+  const GLuint program = loadShader(vertex_shader_text, fragment_shader_text);
   {
 	glUseProgram(program);
 	glBindVertexArray(vao[0]);
@@ -117,7 +116,6 @@ int main(int argc, char** argv) {
 	glfwSetCharCallback(windows[1], character_callback);
 	glfwMakeContextCurrent(windows[1]);
 
-	//glfwSwapInterval(1);
 	{
 	  glUseProgram(program);
 	  glGenVertexArrays(1, &vao[1]);
